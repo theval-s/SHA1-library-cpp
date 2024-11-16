@@ -31,13 +31,12 @@ int main() {
     gb_string.reserve(16777216*64);
     for (int i = 1; i < 16777216; i++)
         gb_string += "abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmno";
-    test_vector.emplace_back(gb_string, "7789F0C9EF7BFC40D93311143DFBE69E2017F592");
-
+    test_vector.emplace_back(std::move(gb_string), "7789F0C9EF7BFC40D93311143DFBE69E2017F592");
 
     bool failed = false;
     for (int i = 0; i < test_vector.size();i++) {
         if (!test(test_vector[i].first, test_vector[i].second)) {
-            std::cerr << "Test " << i << " failed" << std::endl;
+            std::cerr << "Test " << i+1 << " failed" << std::endl;
             failed = true;
         }
     }

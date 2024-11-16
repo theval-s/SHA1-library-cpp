@@ -31,6 +31,7 @@ private:
     uint32_t _words[80];
     SHA1();
     void compute_digest(const std::string &input);
+    void compute_block();
     std::string digest_to_string();
     void byte_reverse(uint32_t&);
 };
