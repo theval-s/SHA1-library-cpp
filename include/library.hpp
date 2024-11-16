@@ -4,6 +4,11 @@
 #include <cstdint>
 #include <string>
 #include <array>
+
+inline static uint32_t left_rotate(const uint32_t& x, const int& n) {
+    return (x << n) | (x >> (32 - n));
+} //bit library already has it but it's slower
+
 class SHA1 {
 public:
     static std::string hash_from_string(const std::string &input);
@@ -23,7 +28,7 @@ private:
     static constexpr int DIGEST_SIZE = 160;
 
     std::array<uint32_t,(DIGEST_SIZE/32)> _digest{};
-    std::array<uint32_t, 80> _words{};
+    uint32_t _words[80];
     SHA1();
     void compute_digest(const std::string &input);
     std::string digest_to_string();
